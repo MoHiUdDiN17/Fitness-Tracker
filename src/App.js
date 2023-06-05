@@ -1,23 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
-
+import React from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';import Main from './Components/Main/Main';
+import Errorhandle from './Components/Errorhandle/Errorhandle';
+import Home from './Components/Home/Home';
+import Table from './Components/Table/Table';
+;
 function App() {
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element:<Main></Main>,
+      children: [
+        {
+          path: '*',
+          element: <Errorhandle></Errorhandle>
+        },
+        {
+          path: '/',
+          // loader: () => fetch('https://assignment-12-pi.vercel.app/categories'),
+          element: <Home></Home>
+        }
+      ]
+    }
+  ])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div >
+      <RouterProvider router={router}></RouterProvider>
     </div>
   );
 }
