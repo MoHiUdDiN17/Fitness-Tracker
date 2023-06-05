@@ -12,7 +12,7 @@ const Calculation = props => {
         event.preventDefault();
         const form = event.target;
         const message = form.message.value;
-        temp.forEach(element => element.score > message ? count += 1 : "");
+        temp.forEach(element => element.score < message ? count += 1 : "");
         notify(count);
     }
 
